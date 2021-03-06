@@ -6,6 +6,8 @@ onready var number = 0
 
 
 func _ready():
+	var random_generator = RandomNumberGenerator.new()
+	random_generator.randomize()
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 
