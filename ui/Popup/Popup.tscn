@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/Popup/Popup.gd" type="Script" id=1]
+
+[node name="Popup" type="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+popup_exclusive = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0509804, 0.294118, 0.247059, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 492.0
+margin_top = 285.0
+margin_right = 539.0
+margin_bottom = 315.0
+custom_constants/separation = 10
+
+[node name="ButtonWrapper" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_constants/separation = 10
+alignment = 1
+
+[node name="ActionWrapper" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 10.0
+margin_right = 47.0
+margin_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_constants/separation = 10
+alignment = 1
+
+[node name="BtnClose" type="Button" parent="CenterContainer/VBoxContainer/ActionWrapper"]
+margin_right = 47.0
+margin_bottom = 20.0
+text = "Close"
+[connection signal="button_up" from="CenterContainer/VBoxContainer/ActionWrapper/BtnClose" to="." method="_on_BtnClose_button_up"]
