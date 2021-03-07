@@ -66,5 +66,5 @@ func check_floor():
 	if rear_feeler.is_colliding():
 		var target = rear_feeler.get_collider()
 		if target.is_in_group("platform"):
-			emit_signal("detect_obsolete_floor", transform.origin.z, target)
+			emit_signal("detect_obsolete_floor", -transform.origin.z, target)
 	pass
