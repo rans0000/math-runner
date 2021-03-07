@@ -13,12 +13,14 @@ const ROAD_WIDTH = 3.5/2
 
 onready var front_feeler = $FrontFeeler
 onready var rear_feeler = $RearFeeler
+onready var score_card = $ScoreCard
 
 
 
 func _physics_process(delta):
 	move_player(delta)
 	check_floor()
+	score_card.set_distance(-transform.origin.z)
 	pass
 
 
