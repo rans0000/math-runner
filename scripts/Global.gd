@@ -1,8 +1,9 @@
 extends Node
 
 var current_scene = null
+enum PLAY_TYPES {LOC_SINGLE = 1, LOC_2_PLAYER = 2}
+var play_type = PLAY_TYPES.LOC_SINGLE
 onready var number = 0
-
 
 
 func _ready():
