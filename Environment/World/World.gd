@@ -14,7 +14,6 @@ func _ready():
 	pause_menu.visible = false
 	prints("Global number", Global.number)
 	player.connect("detect_empty_floor", self, "generate_world")
-#	player.connect("", self, "generate_world")
 	player.connect("detect_obsolete_floor", self, "delete_floor")
 	for i in range(4):
 		generate_world()

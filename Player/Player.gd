@@ -3,11 +3,13 @@ extends KinematicBody
 signal detect_empty_floor
 signal detect_obsolete_floor(z_pos, platform)
 
-const MAX_SPEED = 50
+enum SIDE {LEFT = -1, CENTER = 0, RIGHT = 1}
+export(int) var MAX_SPEED = 50
 var velocity = Vector3()
 var pos = Vector3()
 const ACCELERATION = 20
-var side = 0
+export(SIDE) var side = SIDE.CENTER
+const SIDE_WIDTH = 3
 const GRAVITY = 8
 const ROAD_WIDTH = 3.5/2
 
@@ -17,10 +19,22 @@ onready var score_card = $ScoreCard
 
 
 
+func _ready():
+	set_initial_position(side)
+	pass
+
+
+
 func _physics_process(delta):
 	move_player(delta)
 	check_floor()
 	score_card.set_distance(-transform.origin.z)
+	pass
+
+
+
+func set_initial_position(side):
+	transform.origin.x = side * SIDE_WIDTH
 	pass
 
 
