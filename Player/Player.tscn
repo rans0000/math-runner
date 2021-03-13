@@ -1,10 +1,63 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://ui/ScoreCard/ScoreCard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/PlayerModel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/Animation/Player-coin-hit.tres" type="Animation" id=4]
+[ext_resource path="res://Player/Animation/Player-idle-loop.tres" type="Animation" id=5]
+[ext_resource path="res://Player/Animation/Player-runner-victory.tres" type="Animation" id=6]
+[ext_resource path="res://Player/Animation/Player-sprint-loop.tres" type="Animation" id=7]
+[ext_resource path="res://Player/Animation/Player-walk-loop.tres" type="Animation" id=8]
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Player-coin-hit"
+
+[sub_resource type="AnimationNodeOneShot" id=5]
+filter_enabled = true
+filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_left_arm", "Armature/Skeleton:mixamorig_left_fore_arm", "Armature/Skeleton:mixamorig_left_shoulder", "Armature/Skeleton:mixamorig_neck", "Armature/Skeleton:mixamorig_right_arm", "Armature/Skeleton:mixamorig_right_fore_arm", "Armature/Skeleton:mixamorig_right_shoulder", "Armature/Skeleton:mixamorig_spine_1", "Armature/Skeleton:mixamorig_spine_2" ]
+
+[sub_resource type="AnimationNodeOneShot" id=6]
+filter_enabled = true
+filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_left_arm", "Armature/Skeleton:mixamorig_left_fore_arm", "Armature/Skeleton:mixamorig_left_shoulder", "Armature/Skeleton:mixamorig_neck", "Armature/Skeleton:mixamorig_right_arm", "Armature/Skeleton:mixamorig_right_fore_arm", "Armature/Skeleton:mixamorig_right_shoulder", "Armature/Skeleton:mixamorig_spine", "Armature/Skeleton:mixamorig_spine_1", "Armature/Skeleton:mixamorig_spine_2" ]
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Player-idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Player-walk-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Player-sprint-loop"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=10]
+blend_point_0/node = SubResource( 7 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 8 )
+blend_point_1/pos = 0.5
+blend_point_2/node = SubResource( 9 )
+blend_point_2/pos = 1.0
+value_label = "-1"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Player-runner-victory"
+
+[sub_resource type="AnimationNodeBlendTree" id=12]
+graph_offset = Vector2( -22, 13 )
+nodes/anim_coin_hit/node = SubResource( 4 )
+nodes/anim_coin_hit/position = Vector2( 280, 200 )
+nodes/anim_main/node = SubResource( 5 )
+nodes/anim_main/position = Vector2( 820, 80 )
+nodes/anim_run/node = SubResource( 6 )
+nodes/anim_run/position = Vector2( 560, 80 )
+nodes/anim_stance/node = SubResource( 10 )
+nodes/anim_stance/position = Vector2( 280, 60 )
+nodes/anim_victory/node = SubResource( 11 )
+nodes/anim_victory/position = Vector2( 540, 260 )
+nodes/output/position = Vector2( 1120, 100 )
+node_connections = [ "output", 0, "anim_main", "anim_run", 0, "anim_stance", "anim_run", 1, "anim_coin_hit", "anim_main", 0, "anim_run", "anim_main", 1, "anim_victory" ]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.1
+radius = 0.3
 height = 1.1
 
 [sub_resource type="CubeMesh" id=2]
@@ -15,14 +68,32 @@ size = Vector3( 0.2, 1.3, 0.2 )
 [node name="Player" type="KinematicBody" groups=[
 "player",
 ]]
+collision_layer = 4
 script = ExtResource( 1 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PlayerSpatial/PlayerModel")
+anims/Player-coin-hit = ExtResource( 4 )
+anims/Player-idle-loop = ExtResource( 5 )
+anims/Player-runner-victory = ExtResource( 6 )
+anims/Player-sprint-loop = ExtResource( 7 )
+anims/Player-walk-loop = ExtResource( 8 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/anim_main/active = false
+parameters/anim_run/active = false
+parameters/anim_stance/blend_position = 1.0
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.65, 0 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.85, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0 )
+visible = false
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -48,3 +119,8 @@ cast_to = Vector3( 0, -10, 0 )
 collision_mask = 2
 
 [node name="ScoreCard" parent="." instance=ExtResource( 2 )]
+
+[node name="PlayerSpatial" type="Spatial" parent="."]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+
+[node name="PlayerModel" parent="PlayerSpatial" instance=ExtResource( 3 )]
