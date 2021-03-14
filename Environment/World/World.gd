@@ -54,6 +54,7 @@ func create_players():
 		vw_container.stretch = true
 		viewport.handle_input_locally = false
 		viewport.render_target_update_mode = 0
+		viewport.gui_disable_input = true
 		h_box.add_child(vw_container)
 	pass
 
