@@ -10,7 +10,6 @@ onready var Global = get_node("/root/Global")
 onready var desert_scene = preload("res://Environment/Desert/Desert.tscn")
 onready var player_scene = preload("res://Player/Player.tscn")
 onready var h_box = $HBoxContainer
-#onready var player = $Player
 
 
 
@@ -18,11 +17,6 @@ func _ready():
 	pause_menu.visible = false
 	prints("Global number", Global.number)
 	create_players()
-#	player.connect("detect_empty_floor", self, "generate_world")
-#	player.connect("detect_obsolete_floor", self, "delete_floor")
-#	for player in get_tree().get_nodes_in_group("player"):
-#		player.connect("detect_empty_floor", self, "generate_world")
-#		player.connect("detect_obsolete_floor", self, "delete_floor")
 	
 	for i in range(4):
 		generate_world()
@@ -46,7 +40,7 @@ func create_players():
 		
 		var player = player_scene.instance()
 		player.side = i
-		player.MAX_SPEED = (i * 40) + 10
+		player.forward_speed = (i * 10) + 10
 		player.connect("detect_empty_floor", self, "generate_world")
 		player.connect("detect_obsolete_floor", self, "delete_floor")
 		players.append(player)

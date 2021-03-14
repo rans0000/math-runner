@@ -4,18 +4,28 @@ signal detect_empty_floor
 signal detect_obsolete_floor(z_pos, platform)
 
 enum SIDE {LEFT = -1, CENTER = 0, RIGHT = 1}
-export(int) var MAX_SPEED = 50
+export(int) var FORWARD_SPEED_REGULAR = 20
+export(int) var FORWARD_SPEED_BONUS = 40
+export(int) var FORWARD_SPEED_PENALTY = 5
+var forward_speed = FORWARD_SPEED_REGULAR
 var velocity = Vector3()
 var pos = Vector3()
-const ACCELERATION = 20
+const ACCELERATION = 0.5
 export(SIDE) var side = SIDE.CENTER
 const SIDE_WIDTH = 3
 const GRAVITY = 8
 const ROAD_WIDTH = 3.5/2
+const STANCE_IDLE = 0
+const STANCE_WALK = 0.5
+const STANCE_RUN = 1
+var anim_stance = "parameters/anim_stance/blend_position"
+var anim_head_hit = "parameters/anim_head_hit_oneshot/active"
+var anim_victory = "parameters/anim_victory_oneshot/active"
 
 onready var front_feeler = $FrontFeeler
 onready var rear_feeler = $RearFeeler
 onready var score_card = $ScoreCard
+onready var animationTree = $AnimationTree
 
 
 
@@ -35,6 +45,7 @@ func _physics_process(delta):
 
 func set_initial_position(side):
 	transform.origin.x = side * SIDE_WIDTH
+	animationTree.set(anim_stance, STANCE_IDLE)
 	pass
 
 
@@ -48,10 +59,12 @@ func move_player(delta):
 
 
 func move_forward(delta):
-	var fv = Vector3.FORWARD
-	var new_pos = fv * MAX_SPEED
-	var forward_velocity = fv.linear_interpolate(new_pos, ACCELERATION * delta)
-	return forward_velocity.z
+	var fv = Global.clamp_vector(Vector3(0, 0, velocity.z), forward_speed)
+	var new_pos = Vector3.FORWARD * forward_speed
+	var fw_velocity = fv.linear_interpolate(new_pos, ACCELERATION * delta)
+	set_run_animation(-fw_velocity.z)
+	#printt("side:", side, forward_speed)
+	return fw_velocity.z
 
 
 
@@ -67,4 +80,18 @@ func check_floor():
 		var target = rear_feeler.get_collider()
 		if target.is_in_group("platform"):
 			emit_signal("detect_obsolete_floor", -transform.origin.z, target)
+	pass
+
+
+
+func set_run_animation(speed):
+	var stance = animationTree.get(anim_stance)
+	var lerpMax = 0
+	if speed < 0.5:
+		lerpMax = STANCE_IDLE
+	elif speed < 5:
+		lerpMax = STANCE_WALK
+	else:
+		lerpMax = STANCE_RUN
+	animationTree.set(anim_stance, lerp(stance,lerpMax, 0.05))
 	pass
