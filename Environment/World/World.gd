@@ -40,6 +40,7 @@ func create_players():
 		
 		var player = player_scene.instance()
 		player.side = i
+		player.id = i
 		player.forward_speed = (i * 10) + 10
 		player.connect("detect_empty_floor", self, "generate_world")
 		player.connect("detect_obsolete_floor", self, "delete_floor")
@@ -52,10 +53,11 @@ func create_players():
 		vw_container.anchor_right = 1.0
 		vw_container.anchor_bottom = 1.0
 		vw_container.stretch = true
-		viewport.handle_input_locally = false
+		viewport.handle_input_locally = true
 		viewport.render_target_update_mode = 0
 		viewport.gui_disable_input = true
 		h_box.add_child(vw_container)
+		h_box.move_child(vw_container, 0)
 	pass
 
 

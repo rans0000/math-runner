@@ -7,6 +7,7 @@ enum SIDE {LEFT = -1, CENTER = 0, RIGHT = 1}
 export(int) var FORWARD_SPEED_REGULAR = 20
 export(int) var FORWARD_SPEED_BONUS = 40
 export(int) var FORWARD_SPEED_PENALTY = 5
+var id
 var forward_speed = FORWARD_SPEED_REGULAR
 var velocity = Vector3()
 var pos = Vector3()
@@ -18,7 +19,10 @@ const ROAD_WIDTH = 3.5/2
 const STANCE_IDLE = 0
 const STANCE_WALK = 0.5
 const STANCE_RUN = 1
+const STRAFE_SPEED = 1000
 var anim_stance = "parameters/anim_stance/blend_position"
+var anim_strafe_mode = "parameters/anim_strafe/blend_position"
+var anim_strafe = "parameters/anim_strafe_oneshot/active"
 var anim_head_hit = "parameters/anim_head_hit_oneshot/active"
 var anim_victory = "parameters/anim_victory_oneshot/active"
 
@@ -51,7 +55,7 @@ func set_initial_position(side):
 
 
 func move_player(delta):
-	velocity.x = 0
+	velocity.x = strafe_sideways(delta)
 	velocity.y = 0
 	velocity.z = move_forward(delta)
 	velocity = move_and_slide(velocity, Vector3.UP)
@@ -68,8 +72,19 @@ func move_forward(delta):
 
 
 
-func _input(event):
-	pass
+func strafe_sideways(delta):
+	if Input.is_action_just_pressed("move_left_%s" % id):
+		side = SIDE.CENTER if side == SIDE.RIGHT else SIDE.LEFT
+		set_strafe_animation(SIDE.LEFT)
+	elif Input.is_action_just_pressed("move_right_%s" % id):
+		side = SIDE.CENTER if side == SIDE.LEFT else SIDE.RIGHT
+		set_strafe_animation(SIDE.RIGHT)
+	
+	var target_pos = transform.origin
+	target_pos.x = side * ROAD_WIDTH
+	var target_velocity = target_pos - transform.origin
+	var strafe_velocity = Global.clamp_vector(target_velocity * STRAFE_SPEED, STRAFE_SPEED)
+	return (strafe_velocity * delta).x
 
 
 
@@ -95,3 +110,10 @@ func set_run_animation(speed):
 		lerpMax = STANCE_RUN
 	animationTree.set(anim_stance, lerp(stance,lerpMax, 0.05))
 	pass
+
+
+
+func set_strafe_animation(strafe_mode):
+	print(strafe_mode)
+	animationTree.set(anim_strafe_mode, strafe_mode)
+	animationTree.set(anim_strafe, true)
