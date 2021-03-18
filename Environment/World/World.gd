@@ -39,7 +39,7 @@ func create_players():
 		var player = player_scene.instance()
 		player.side = i
 		player.id = i
-		player.forward_speed = (i * 10) + 10
+		#player.forward_speed = (i * 10) + 10
 		player.connect("detect_empty_floor", self, "generate_world")
 		player.connect("detect_obsolete_floor", self, "delete_floor")
 		players.append(player)

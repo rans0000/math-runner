@@ -152,3 +152,15 @@ collision_mask = 2
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
 
 [node name="PlayerModel" parent="PlayerSpatial" instance=ExtResource( 3 )]
+
+[node name="LeftFeeler" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+enabled = true
+cast_to = Vector3( -1.5, 0, 0 )
+collision_mask = 4
+
+[node name="RightFeeler" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+enabled = true
+cast_to = Vector3( 1.5, 0, 0 )
+collision_mask = 4
