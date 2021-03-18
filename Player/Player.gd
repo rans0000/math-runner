@@ -47,8 +47,8 @@ func _physics_process(delta):
 
 
 
-func set_initial_position(side):
-	transform.origin.x = side * SIDE_WIDTH
+func set_initial_position(_side):
+	transform.origin.x = _side * SIDE_WIDTH
 	animationTree.set(anim_stance, STANCE_IDLE)
 	pass
 

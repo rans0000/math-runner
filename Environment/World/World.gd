@@ -18,7 +18,7 @@ func _ready():
 	prints("Global number", Global.number)
 	create_players()
 	
-	for i in range(4):
+	for _i in range(4):
 		generate_world()
 
 
@@ -32,8 +32,6 @@ func _input(event):
 
 func create_players():
 	var player_count = Global.play_type
-	var top = null
-	var bottom = null
 	for i in range(player_count):
 		var vw_container = ViewportContainer.new()
 		var viewport = Viewport.new()
