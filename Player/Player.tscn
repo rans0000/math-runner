@@ -11,46 +11,46 @@
 [ext_resource path="res://Player/Animation/Player-strafe-right.tres" type="Animation" id=9]
 [ext_resource path="res://Player/Animation/Player-stafe-left.tres" type="Animation" id=10]
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Player-coin-hit"
 
-[sub_resource type="AnimationNodeOneShot" id=6]
+[sub_resource type="AnimationNodeOneShot" id=2]
 filter_enabled = true
 filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_left_arm", "Armature/Skeleton:mixamorig_left_fore_arm", "Armature/Skeleton:mixamorig_left_shoulder", "Armature/Skeleton:mixamorig_neck", "Armature/Skeleton:mixamorig_right_arm", "Armature/Skeleton:mixamorig_right_fore_arm", "Armature/Skeleton:mixamorig_right_shoulder", "Armature/Skeleton:mixamorig_spine", "Armature/Skeleton:mixamorig_spine_1", "Armature/Skeleton:mixamorig_spine_2" ]
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Player-idle-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Player-walk-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Player-sprint-loop"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=10]
-blend_point_0/node = SubResource( 7 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=6]
+blend_point_0/node = SubResource( 3 )
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 8 )
+blend_point_1/node = SubResource( 4 )
 blend_point_1/pos = 0.5
-blend_point_2/node = SubResource( 9 )
+blend_point_2/node = SubResource( 5 )
 blend_point_2/pos = 1.0
 value_label = "-1"
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Player-stafe-left"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Player-strafe-right"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=3]
-blend_point_0/node = SubResource( 1 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=9]
+blend_point_0/node = SubResource( 7 )
 blend_point_0/pos = -1.0
-blend_point_1/node = SubResource( 2 )
+blend_point_1/node = SubResource( 8 )
 blend_point_1/pos = 1.0
 snap = 1.0
 value_label = "1"
 
-[sub_resource type="AnimationNodeOneShot" id=4]
+[sub_resource type="AnimationNodeOneShot" id=10]
 filter_enabled = true
 filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_left_foot", "Armature/Skeleton:mixamorig_left_leg", "Armature/Skeleton:mixamorig_left_toe_base", "Armature/Skeleton:mixamorig_left_up_leg", "Armature/Skeleton:mixamorig_neck", "Armature/Skeleton:mixamorig_right_foot", "Armature/Skeleton:mixamorig_right_leg", "Armature/Skeleton:mixamorig_right_toe_base", "Armature/Skeleton:mixamorig_right_up_leg", "Armature/Skeleton:mixamorig_spine", "Armature/Skeleton:mixamorig_spine_1", "Armature/Skeleton:mixamorig_spine_2" ]
 
@@ -63,22 +63,22 @@ filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_lef
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
 graph_offset = Vector2( -123.6, -27.2 )
-nodes/anim_coin_hit/node = SubResource( 5 )
+nodes/anim_coin_hit/node = SubResource( 1 )
 nodes/anim_coin_hit/position = Vector2( -160, 280 )
-nodes/anim_head_hit_oneshot/node = SubResource( 6 )
+nodes/anim_head_hit_oneshot/node = SubResource( 2 )
 nodes/anim_head_hit_oneshot/position = Vector2( 400, 100 )
-nodes/anim_stance/node = SubResource( 10 )
+nodes/anim_stance/node = SubResource( 6 )
 nodes/anim_stance/position = Vector2( -60, -20 )
-nodes/anim_strafe/node = SubResource( 3 )
+nodes/anim_strafe/node = SubResource( 9 )
 nodes/anim_strafe/position = Vector2( -60, 120 )
-nodes/anim_strafe_oneshot/node = SubResource( 4 )
+nodes/anim_strafe_oneshot/node = SubResource( 10 )
 nodes/anim_strafe_oneshot/position = Vector2( 160, 20 )
 nodes/anim_victory/node = SubResource( 11 )
 nodes/anim_victory/position = Vector2( 400, 300 )
 nodes/anim_victory_oneshot/node = SubResource( 12 )
 nodes/anim_victory_oneshot/position = Vector2( 680, 120 )
 nodes/output/position = Vector2( 980, 120 )
-node_connections = [ "output", 0, "anim_victory_oneshot", "anim_head_hit_oneshot", 0, "anim_strafe_oneshot", "anim_head_hit_oneshot", 1, "anim_coin_hit", "anim_victory_oneshot", 0, "anim_head_hit_oneshot", "anim_victory_oneshot", 1, "anim_victory", "anim_strafe_oneshot", 0, "anim_stance", "anim_strafe_oneshot", 1, "anim_strafe" ]
+node_connections = [ "output", 0, "anim_victory_oneshot", "anim_victory_oneshot", 0, "anim_head_hit_oneshot", "anim_victory_oneshot", 1, "anim_victory", "anim_strafe_oneshot", 0, "anim_stance", "anim_strafe_oneshot", 1, "anim_strafe", "anim_head_hit_oneshot", 0, "anim_strafe_oneshot", "anim_head_hit_oneshot", 1, "anim_coin_hit" ]
 
 [sub_resource type="CapsuleShape" id=14]
 radius = 0.3
@@ -164,3 +164,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 enabled = true
 cast_to = Vector3( 1.5, 0, 0 )
 collision_mask = 4
+
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_SpeedTimer_timeout"]

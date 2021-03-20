@@ -4,7 +4,7 @@ signal detect_empty_floor
 signal detect_obsolete_floor(z_pos, platform)
 
 enum SIDE {LEFT = -1, CENTER = 0, RIGHT = 1}
-export(int) var FORWARD_SPEED_REGULAR = 20
+export(int) var FORWARD_SPEED_REGULAR = 15
 export(int) var FORWARD_SPEED_BONUS = 40
 export(int) var FORWARD_SPEED_PENALTY = 5
 var id
@@ -32,6 +32,7 @@ onready var score_card = $ScoreCard
 onready var animation_tree = $AnimationTree
 onready var left_feeler = $LeftFeeler
 onready var right_feeler = $RightFeeler
+onready var speed_timer = $SpeedTimer
 
 
 
@@ -44,7 +45,8 @@ func _ready():
 func _physics_process(delta):
 	move_player(delta)
 	check_floor()
-	score_card.set_distance(-transform.origin.z)
+#	score_card.set_distance(-transform.origin.z)
+	score_card.set_distance(forward_speed)
 	pass
 
 
@@ -127,10 +129,17 @@ func set_strafe_animation(strafe_mode):
 func slow_down():
 	animation_tree.set(anim_head_hit, true)
 	forward_speed = FORWARD_SPEED_PENALTY
+	speed_timer.start()
 	pass
 
 
 
 func sprint():
 	forward_speed = FORWARD_SPEED_BONUS
+	speed_timer.start()
+	pass
+
+
+func _on_SpeedTimer_timeout():
+	forward_speed = FORWARD_SPEED_REGULAR
 	pass
