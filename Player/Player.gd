@@ -69,7 +69,6 @@ func move_forward(delta):
 	var new_pos = Vector3.FORWARD * forward_speed
 	var fw_velocity = fv.linear_interpolate(new_pos, ACCELERATION * delta)
 	set_run_animation(-fw_velocity.z)
-	#printt("side:", side, forward_speed)
 	return fw_velocity.z
 
 
@@ -120,6 +119,18 @@ func set_run_animation(speed):
 
 
 func set_strafe_animation(strafe_mode):
-	print(strafe_mode)
 	animation_tree.set(anim_strafe_mode, strafe_mode)
 	animation_tree.set(anim_strafe, true)
+
+
+
+func slow_down():
+	animation_tree.set(anim_head_hit, true)
+	forward_speed = FORWARD_SPEED_PENALTY
+	pass
+
+
+
+func sprint():
+	forward_speed = FORWARD_SPEED_BONUS
+	pass

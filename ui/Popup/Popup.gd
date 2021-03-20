@@ -21,7 +21,6 @@ func _on_BtnClose_button_up():
 
 
 func on_number_select(number):
-	print(number)
 	Global.number = number
 	Global.goto_scene("res://Environment/World/World.tscn")
 	pass

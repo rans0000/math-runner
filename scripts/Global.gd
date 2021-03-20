@@ -3,12 +3,13 @@ extends Node
 var current_scene = null
 enum PLAY_TYPES {LOC_SINGLE = 1, LOC_2_PLAYER = 2}
 var play_type = PLAY_TYPES.LOC_SINGLE
-onready var number = 0
+onready var number = 5
+var rng
 
 
 func _ready():
-	var random_generator = RandomNumberGenerator.new()
-	random_generator.randomize()
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 
@@ -34,3 +35,8 @@ func clamp_vector(vector, length):
 	if vector.length() > length:
 		vector = norm * length
 	return vector
+
+
+
+func is_sprint(hit_number):
+	return (hit_number % number == 0)

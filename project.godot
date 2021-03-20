@@ -28,6 +28,10 @@ config/icon="res://icon.png"
 
 Global="*res://scripts/Global.gd"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "SIsilicon.3d.text" )
+
 [input]
 
 move_left_0={
@@ -55,6 +59,7 @@ move_right_1={
 
 3d_physics/layer_2="Environment"
 3d_physics/layer_3="Player"
+3d_physics/layer_4="Coin"
 
 [rendering]
 
