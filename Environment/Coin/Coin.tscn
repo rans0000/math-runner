@@ -11,7 +11,7 @@ extra_spacing_char = -1
 font_data = ExtResource( 4 )
 
 [sub_resource type="CylinderShape" id=2]
-radius = 0.73
+radius = 0.58
 height = 0.12
 
 [node name="Coin" type="Spatial"]

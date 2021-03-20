@@ -3,7 +3,6 @@ extends KinematicBody
 signal detect_empty_floor
 signal detect_obsolete_floor(z_pos, platform)
 
-enum SIDE {LEFT = -1, CENTER = 0, RIGHT = 1}
 export(int) var FORWARD_SPEED_REGULAR = 15
 export(int) var FORWARD_SPEED_BONUS = 40
 export(int) var FORWARD_SPEED_PENALTY = 5
@@ -12,7 +11,7 @@ var forward_speed = FORWARD_SPEED_REGULAR
 var velocity = Vector3()
 var pos = Vector3()
 const ACCELERATION = 0.5
-export(SIDE) var side = SIDE.CENTER
+export (Global.SIDE) var side = Global.SIDE.CENTER
 const SIDE_WIDTH = 3
 const GRAVITY = 8
 const ROAD_WIDTH = 3.5/2
@@ -45,8 +44,7 @@ func _ready():
 func _physics_process(delta):
 	move_player(delta)
 	check_floor()
-#	score_card.set_distance(-transform.origin.z)
-	score_card.set_distance(forward_speed)
+	score_card.set_distance(-transform.origin.z)
 	pass
 
 
@@ -79,13 +77,13 @@ func strafe_sideways(delta):
 	if Input.is_action_just_pressed("move_left_%s" % id):
 		left_feeler.force_raycast_update()
 		if !left_feeler.is_colliding():
-			side = SIDE.CENTER if side == SIDE.RIGHT else SIDE.LEFT
-			set_strafe_animation(SIDE.LEFT)
+			side = Global.SIDE.CENTER if side == Global.SIDE.RIGHT else Global.SIDE.LEFT
+			set_strafe_animation(Global.SIDE.LEFT)
 	elif Input.is_action_just_pressed("move_right_%s" % id):
 		right_feeler.force_raycast_update()
 		if !right_feeler.is_colliding():
-			side = SIDE.CENTER if side == SIDE.LEFT else SIDE.RIGHT
-			set_strafe_animation(SIDE.RIGHT)
+			side = Global.SIDE.CENTER if side == Global.SIDE.LEFT else Global.SIDE.RIGHT
+			set_strafe_animation(Global.SIDE.RIGHT)
 	
 	var target_pos = transform.origin
 	target_pos.x = side * ROAD_WIDTH

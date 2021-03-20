@@ -7,6 +7,7 @@ onready var display = $Display
 
 
 func _ready():
+	number = Global.rng.randi_range(0, 99)
 	display.text = String(number)
 
 
@@ -22,4 +23,5 @@ func _on_Area_body_entered(body):
 			body.sprint()
 		else:
 			body.slow_down()
+		call_deferred("free")
 	pass
