@@ -109,11 +109,11 @@ func set_run_animation(speed):
 	var lerpMax = 0
 	if speed < 0.5:
 		lerpMax = STANCE_IDLE
-	elif speed < 5:
+	elif speed < FORWARD_SPEED_PENALTY + 1:
 		lerpMax = STANCE_WALK
 	else:
 		lerpMax = STANCE_RUN
-	animation_tree.set(anim_stance, lerp(stance,lerpMax, 0.05))
+	animation_tree.set(anim_stance, lerp(stance,lerpMax, 0.1))
 	pass
 
 

@@ -2,7 +2,7 @@ extends Spatial
 
 const BLOCK_WIDTH = 50/2
 const ROAD_WIDTH = 3.5/2
-const MIN_COIN_DISTANCE = 15
+const MIN_COIN_DISTANCE = 5
 
 onready var sand_left = $DesertSand1
 onready var sand_right = $DesertSand2
@@ -28,8 +28,8 @@ func place_sand():
 
 func place_coins():
 	var board_width = BLOCK_WIDTH * 2
-	var z_pos = Global.rng.randi_range(0, board_width)
-	while z_pos < board_width:
+	var z_pos = Global.rng.randi_range(MIN_COIN_DISTANCE, board_width - MIN_COIN_DISTANCE)
+	while z_pos < (board_width - MIN_COIN_DISTANCE):
 		var side = Global.rng.randi_range(-1,1)
 		var coin = coin_scene.instance()
 		var t_pos = z_pos - BLOCK_WIDTH

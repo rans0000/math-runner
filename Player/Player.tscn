@@ -16,7 +16,7 @@ animation = "Player-coin-hit"
 
 [sub_resource type="AnimationNodeOneShot" id=2]
 filter_enabled = true
-filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_left_arm", "Armature/Skeleton:mixamorig_left_fore_arm", "Armature/Skeleton:mixamorig_left_shoulder", "Armature/Skeleton:mixamorig_neck", "Armature/Skeleton:mixamorig_right_arm", "Armature/Skeleton:mixamorig_right_fore_arm", "Armature/Skeleton:mixamorig_right_shoulder", "Armature/Skeleton:mixamorig_spine", "Armature/Skeleton:mixamorig_spine_1", "Armature/Skeleton:mixamorig_spine_2" ]
+filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_neck", "Armature/Skeleton:mixamorig_spine_2" ]
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Player-idle-loop"
@@ -62,7 +62,7 @@ filter_enabled = true
 filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_left_arm", "Armature/Skeleton:mixamorig_left_fore_arm", "Armature/Skeleton:mixamorig_left_shoulder", "Armature/Skeleton:mixamorig_neck", "Armature/Skeleton:mixamorig_right_arm", "Armature/Skeleton:mixamorig_right_fore_arm", "Armature/Skeleton:mixamorig_right_shoulder", "Armature/Skeleton:mixamorig_spine_1", "Armature/Skeleton:mixamorig_spine_2" ]
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
-graph_offset = Vector2( -123.6, -27.2 )
+graph_offset = Vector2( -18, 31 )
 nodes/anim_coin_hit/node = SubResource( 1 )
 nodes/anim_coin_hit/position = Vector2( -160, 280 )
 nodes/anim_head_hit_oneshot/node = SubResource( 2 )
@@ -133,6 +133,7 @@ material/0 = null
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.6, 2.419 )
 current = true
+far = 500.0
 
 [node name="FrontFeeler" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -250 )
