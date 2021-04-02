@@ -3,6 +3,7 @@ extends Spatial
 const BLOCK_WIDTH = 50/2
 const ROAD_WIDTH = 3.5/2
 const MIN_COIN_DISTANCE = 5
+export var generate_coins: bool = true
 
 onready var sand_left = $DesertSand1
 onready var sand_right = $DesertSand2
@@ -12,7 +13,8 @@ onready var coin_scene = preload("res://Environment/Coin/Coin.tscn")
 
 func _ready():
 	place_sand()
-	place_coins()
+	if generate_coins:
+		place_coins()
 	pass
 
 

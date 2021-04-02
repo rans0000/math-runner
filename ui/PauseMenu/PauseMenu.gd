@@ -8,4 +8,4 @@ func _on_BtnClose_button_up():
 
 
 func _on_BtnMainMenu_button_up():
-	Global.goto_scene("res://ui/MainMenu/MainMenu.tscn")
+	Global.goto_scene("res://ui/MainMenu/HomeScreen.tscn")

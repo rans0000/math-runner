@@ -62,13 +62,13 @@ filter_enabled = true
 filters = [ "Armature/Skeleton:mixamorig_head", "Armature/Skeleton:mixamorig_left_arm", "Armature/Skeleton:mixamorig_left_fore_arm", "Armature/Skeleton:mixamorig_left_shoulder", "Armature/Skeleton:mixamorig_neck", "Armature/Skeleton:mixamorig_right_arm", "Armature/Skeleton:mixamorig_right_fore_arm", "Armature/Skeleton:mixamorig_right_shoulder", "Armature/Skeleton:mixamorig_spine_1", "Armature/Skeleton:mixamorig_spine_2" ]
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
-graph_offset = Vector2( -18, 31 )
+graph_offset = Vector2( -278.88, -74.32 )
 nodes/anim_coin_hit/node = SubResource( 1 )
 nodes/anim_coin_hit/position = Vector2( -160, 280 )
 nodes/anim_head_hit_oneshot/node = SubResource( 2 )
 nodes/anim_head_hit_oneshot/position = Vector2( 400, 100 )
 nodes/anim_stance/node = SubResource( 6 )
-nodes/anim_stance/position = Vector2( -60, -20 )
+nodes/anim_stance/position = Vector2( -60, -40 )
 nodes/anim_strafe/node = SubResource( 9 )
 nodes/anim_strafe/position = Vector2( -60, 120 )
 nodes/anim_strafe_oneshot/node = SubResource( 10 )
@@ -78,7 +78,7 @@ nodes/anim_victory/position = Vector2( 400, 300 )
 nodes/anim_victory_oneshot/node = SubResource( 12 )
 nodes/anim_victory_oneshot/position = Vector2( 680, 120 )
 nodes/output/position = Vector2( 980, 120 )
-node_connections = [ "output", 0, "anim_victory_oneshot", "anim_victory_oneshot", 0, "anim_head_hit_oneshot", "anim_victory_oneshot", 1, "anim_victory", "anim_head_hit_oneshot", 0, "anim_strafe_oneshot", "anim_head_hit_oneshot", 1, "anim_coin_hit", "anim_strafe_oneshot", 0, "anim_stance", "anim_strafe_oneshot", 1, "anim_strafe" ]
+node_connections = [ "output", 0, "anim_victory_oneshot", "anim_head_hit_oneshot", 0, "anim_strafe_oneshot", "anim_head_hit_oneshot", 1, "anim_coin_hit", "anim_strafe_oneshot", 0, "anim_stance", "anim_strafe_oneshot", 1, "anim_strafe", "anim_victory_oneshot", 0, "anim_head_hit_oneshot", "anim_victory_oneshot", 1, "anim_victory" ]
 
 [sub_resource type="CapsuleShape" id=14]
 radius = 0.3
@@ -110,7 +110,7 @@ tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/anim_head_hit_oneshot/active = false
-parameters/anim_stance/blend_position = 0.5
+parameters/anim_stance/blend_position = 0.0
 parameters/anim_strafe/blend_position = -1.0
 parameters/anim_strafe_oneshot/active = false
 parameters/anim_victory_oneshot/active = false
