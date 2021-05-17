@@ -5,6 +5,7 @@ enum PLAY_TYPES {LOC_SINGLE = 1, LOC_2_PLAYER = 2}
 enum SIDE {LEFT = -1, CENTER = 0, RIGHT = 1}
 var play_type = PLAY_TYPES.LOC_SINGLE
 onready var number = 5
+onready var distance = 2
 var rng
 
 
