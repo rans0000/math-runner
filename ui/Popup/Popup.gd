@@ -1,10 +1,11 @@
 extends Control
 
-onready var button_wrapper = $Popup/MarginContainer/Panel/CenterContainer/VBoxContainer/ButtonWrapper
-#onready var btn_numeric = $CenterContainer/VBoxContainer/ButtonWrapper/BtnNumeric
-onready var btn_numeric = $Popup/MarginContainer/Panel/CenterContainer/VBoxContainer/ButtonWrapper/BtnNumeric
 onready var Global = get_node("/root/Global")
 onready var popup = $Popup
+export (NodePath) var button_wrapper_node
+export (NodePath) var btn_numeric_node
+onready var button_wrapper = get_node(button_wrapper_node)
+onready var btn_numeric = get_node(btn_numeric_node)
 
 
 

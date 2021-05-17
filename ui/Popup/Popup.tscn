@@ -21,6 +21,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+button_wrapper_node = NodePath("Popup/MarginContainer/Panel/VBoxContainer/CenterContainer/VBoxContainer/ButtonWrapper")
+btn_numeric_node = NodePath("Popup/MarginContainer/Panel/VBoxContainer/CenterContainer/VBoxContainer/ButtonWrapper/BtnNumeric")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -34,6 +36,9 @@ __meta__ = {
 visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="Popup"]
 anchor_right = 1.0
@@ -57,29 +62,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Popup/MarginContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Popup/MarginContainer/Panel/VBoxContainer"]
+margin_right = 924.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Race Setup"
+
+[node name="CenterContainer" type="CenterContainer" parent="Popup/MarginContainer/Panel/VBoxContainer"]
+margin_top = 40.0
+margin_right = 924.0
+margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer/Panel/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer/Panel/VBoxContainer/CenterContainer"]
 margin_left = 337.0
-margin_top = 192.0
+margin_top = 172.0
 margin_right = 587.0
-margin_bottom = 308.0
+margin_bottom = 288.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="Label" type="Label" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Popup/MarginContainer/Panel/VBoxContainer/CenterContainer/VBoxContainer"]
 margin_right = 250.0
 margin_bottom = 36.0
 
-[node name="ButtonWrapper" type="HBoxContainer" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer"]
+[node name="ButtonWrapper" type="HBoxContainer" parent="Popup/MarginContainer/Panel/VBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 46.0
 margin_right = 250.0
 margin_bottom = 46.0
@@ -90,7 +110,7 @@ size_flags_vertical = 7
 custom_constants/separation = 10
 alignment = 1
 
-[node name="BtnNumeric" type="Button" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer/ButtonWrapper"]
+[node name="BtnNumeric" type="Button" parent="Popup/MarginContainer/Panel/VBoxContainer/CenterContainer/VBoxContainer/ButtonWrapper"]
 visible = false
 margin_left = 98.0
 margin_right = 152.0
@@ -107,7 +127,7 @@ custom_colors/font_color_hover = Color( 0.960784, 0.886275, 0.227451, 1 )
 custom_colors/font_color_pressed = Color( 0.568627, 0.188235, 0.0196078, 1 )
 text = "0"
 
-[node name="ActionWrapper" type="HBoxContainer" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer"]
+[node name="ActionWrapper" type="HBoxContainer" parent="Popup/MarginContainer/Panel/VBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 56.0
 margin_right = 250.0
 margin_bottom = 116.0
@@ -118,9 +138,9 @@ size_flags_vertical = 7
 custom_constants/separation = 10
 alignment = 1
 
-[node name="BtnClose" type="Button" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer/ActionWrapper"]
+[node name="BtnClose" type="Button" parent="Popup/MarginContainer/Panel/VBoxContainer/CenterContainer/VBoxContainer/ActionWrapper"]
 margin_right = 250.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 250, 60 )
 text = "CLOSE"
-[connection signal="button_up" from="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer/ActionWrapper/BtnClose" to="." method="_on_BtnClose_button_up"]
+[connection signal="button_up" from="Popup/MarginContainer/Panel/VBoxContainer/CenterContainer/VBoxContainer/ActionWrapper/BtnClose" to="." method="_on_BtnClose_button_up"]
