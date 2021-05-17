@@ -1,6 +1,6 @@
 extends Control
 
-onready var popup = $Popup;
+onready var popup = $Popup/Popup;
 onready var Global = get_node("/root/Global")
 
 

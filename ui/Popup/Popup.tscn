@@ -1,11 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/Popup/Popup.gd" type="Script" id=1]
+[ext_resource path="res://ui/Themes/MainTheme/Textures/btn_numeric_texture.tres" type="StyleBox" id=2]
+[ext_resource path="res://ui/Themes/MainTheme/Textures/btn_numeric_pressed_texture.tres" type="StyleBox" id=3]
+[ext_resource path="res://fonts/Ranchers-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://ui/Themes/MainTheme/main_theme.tres" type="Theme" id=5]
 
-[node name="Popup" type="Popup"]
+[sub_resource type="DynamicFont" id=1]
+size = 28
+use_filter = true
+font_data = ExtResource( 4 )
+
+[node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-popup_exclusive = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 5 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -14,28 +25,64 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0509804, 0.294118, 0.247059, 1 )
+color = Color( 0.0784314, 0.192157, 0.8, 0.682353 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Popup" type="Popup" parent="."]
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 7.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 492.0
-margin_top = 285.0
-margin_right = 539.0
-margin_bottom = 315.0
+[node name="Panel" type="Panel" parent="Popup/MarginContainer"]
+margin_right = 924.0
+margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Popup/MarginContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer/Panel/CenterContainer"]
+margin_left = 337.0
+margin_top = 192.0
+margin_right = 587.0
+margin_bottom = 308.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="ButtonWrapper" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 47.0
+[node name="Label" type="Label" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 36.0
+
+[node name="ButtonWrapper" type="HBoxContainer" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 250.0
+margin_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 7
@@ -43,10 +90,27 @@ size_flags_vertical = 7
 custom_constants/separation = 10
 alignment = 1
 
-[node name="ActionWrapper" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 10.0
-margin_right = 47.0
-margin_bottom = 30.0
+[node name="BtnNumeric" type="Button" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer/ButtonWrapper"]
+visible = false
+margin_left = 98.0
+margin_right = 152.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 54, 54 )
+mouse_default_cursor_shape = 2
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/normal = ExtResource( 2 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.960784, 0.886275, 0.227451, 1 )
+custom_colors/font_color_pressed = Color( 0.568627, 0.188235, 0.0196078, 1 )
+text = "0"
+
+[node name="ActionWrapper" type="HBoxContainer" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 250.0
+margin_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 7
@@ -54,8 +118,9 @@ size_flags_vertical = 7
 custom_constants/separation = 10
 alignment = 1
 
-[node name="BtnClose" type="Button" parent="CenterContainer/VBoxContainer/ActionWrapper"]
-margin_right = 47.0
-margin_bottom = 20.0
-text = "Close"
-[connection signal="button_up" from="CenterContainer/VBoxContainer/ActionWrapper/BtnClose" to="." method="_on_BtnClose_button_up"]
+[node name="BtnClose" type="Button" parent="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer/ActionWrapper"]
+margin_right = 250.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 250, 60 )
+text = "CLOSE"
+[connection signal="button_up" from="Popup/MarginContainer/Panel/CenterContainer/VBoxContainer/ActionWrapper/BtnClose" to="." method="_on_BtnClose_button_up"]

@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/Themes/MainTheme/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/Themes/MainTheme/secondary_theme.tres" type="Theme" id=2]
+[ext_resource path="res://ui/Themes/MainTheme/Textures/btn_arrow_r_default.png" type="Texture" id=3]
+[ext_resource path="res://ui/Themes/MainTheme/Textures/btn_arrow_r_pressed.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 56, 60 )
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 56, 60 )
 
 [node name="UITest" type="Control"]
 anchor_right = 1.0
@@ -11,6 +22,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -57,3 +69,106 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+margin_right = 924.0
+margin_bottom = 500.0
+
+[node name="Tabs" type="Tabs" parent="MarginContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 29.0
+margin_top = 127.0
+margin_right = -33.0
+margin_bottom = -36.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Tabs"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Tabs/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 36.0
+theme = ExtResource( 2 )
+text = "Howdy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Tabs/VBoxContainer"]
+margin_top = 40.0
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 0 )
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="MarginContainer/TabContainer/Tabs/VBoxContainer/HBoxContainer"]
+margin_right = 56.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 56, 60 )
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+action_mode = 0
+text = "<"
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/TabContainer/Tabs/VBoxContainer/HBoxContainer"]
+margin_left = 56.0
+margin_right = 344.0
+margin_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+context_menu_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="MarginContainer/TabContainer/Tabs/VBoxContainer/HBoxContainer"]
+margin_left = 344.0
+margin_right = 400.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 56, 60 )
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 1 )
+action_mode = 0
+text = ">"
+
+[node name="Tabs2" type="Tabs" parent="MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 29.0
+margin_top = 127.0
+margin_right = -33.0
+margin_bottom = -36.0
+
+[node name="Tabs3" type="Tabs" parent="MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 29.0
+margin_top = 127.0
+margin_right = -33.0
+margin_bottom = -36.0

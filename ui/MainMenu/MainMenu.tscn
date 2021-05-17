@@ -74,7 +74,7 @@ margin_right = 250.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 250, 60 )
 mouse_default_cursor_shape = 2
-text = "1 Player"
+text = "1 PLAYER"
 
 [node name="BtnPlay2" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 margin_top = 70.0
@@ -82,7 +82,7 @@ margin_right = 250.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 250, 60 )
 mouse_default_cursor_shape = 2
-text = "2 Player"
+text = "2 PLAYER"
 
 [node name="BtnOptions" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 margin_top = 140.0
@@ -90,7 +90,7 @@ margin_right = 250.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 250, 60 )
 mouse_default_cursor_shape = 2
-text = "Options"
+text = "OPTIONS"
 
 [node name="BtnExit" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 margin_top = 210.0
@@ -98,7 +98,7 @@ margin_right = 250.0
 margin_bottom = 270.0
 rect_min_size = Vector2( 250, 60 )
 mouse_default_cursor_shape = 2
-text = "Exit"
+text = "EXIT"
 
 [node name="Popup" parent="." instance=ExtResource( 2 )]
 [connection signal="button_up" from="Panel/CenterContainer/VBoxContainer/BtnPlay1" to="." method="_on_BtnPlay_button_up"]
