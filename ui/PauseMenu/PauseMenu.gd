@@ -14,8 +14,10 @@ func _input(event):
 
 func _on_BtnClose_button_up():
 	self.visible = false
+	get_tree().paused = false
 
 
 
 func _on_BtnMainMenu_button_up():
+	get_tree().paused = false
 	Global.goto_scene("res://ui/MainMenu/HomeScreen.tscn")
