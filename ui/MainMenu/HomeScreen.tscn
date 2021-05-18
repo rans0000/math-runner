@@ -51,10 +51,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MainMenu" parent="GridContainer/CenterContainer" instance=ExtResource( 4 )]
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 256.0
 margin_top = 300.0
 margin_right = 256.0
+margin_bottom = 300.0
