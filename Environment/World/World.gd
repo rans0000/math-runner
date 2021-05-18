@@ -27,12 +27,12 @@ func _ready():
 
 
 func reset_game():
+	#Global.distance = 0.1
+	get_tree().paused = false
+	finish_line_created = false
 	pause_menu.visible = false
 	victory_menu.visible = false
-	get_tree().paused = false
 	winning_player = ""
-	finish_line_created = false
-	Global.distance = 0.1
 	pass
 
 
@@ -60,6 +60,8 @@ func create_players():
 		viewport.handle_input_locally = true
 		viewport.render_target_update_mode = 0
 		viewport.gui_disable_input = true
+		if i == 1:
+			set_player_material(player)
 		h_box.add_child(vw_container)
 		h_box.move_child(vw_container, 0)
 	pass
@@ -104,3 +106,16 @@ func on_player_wins(player_id):
 		pass
 	winning_player = String(player_id + 1)
 	victory_menu.open_victory_dialog(player_id)
+
+
+
+func set_player_material(player):
+#	var model = player.get_node("PlayerSpatial/PlayerModel/Armature/Skeleton/Girl")
+#	var overcoat = player.get_node("PlayerSpatial/PlayerModel/Armature/Skeleton/Overcoat")
+#	var model_mat = SpatialMaterial.new()
+#	var overcoat_mat = SpatialMaterial.new()
+#	model_mat.albedo_color = Color("#4F2A20")
+#	overcoat_mat.albedo_color = Color("#BD3D64")
+#	model.set_material_override(7, model_mat)
+#	overcoat.set_material_override(0, overcoat_mat)
+	pass

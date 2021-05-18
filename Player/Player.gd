@@ -32,6 +32,7 @@ onready var animation_tree = $AnimationTree
 onready var left_feeler = $LeftFeeler
 onready var right_feeler = $RightFeeler
 onready var speed_timer = $SpeedTimer
+#onready var tt = $PlayerSpatial/PlayerModel/Armature/Skeleton/Overcoat
 
 
 
