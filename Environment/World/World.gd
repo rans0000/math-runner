@@ -110,12 +110,12 @@ func on_player_wins(player_id):
 
 
 func set_player_material(player):
-#	var model = player.get_node("PlayerSpatial/PlayerModel/Armature/Skeleton/Girl")
-#	var overcoat = player.get_node("PlayerSpatial/PlayerModel/Armature/Skeleton/Overcoat")
-#	var model_mat = SpatialMaterial.new()
-#	var overcoat_mat = SpatialMaterial.new()
-#	model_mat.albedo_color = Color("#4F2A20")
-#	overcoat_mat.albedo_color = Color("#BD3D64")
-#	model.set_material_override(7, model_mat)
-#	overcoat.set_material_override(0, overcoat_mat)
+	var model = player.get_node("PlayerSpatial/PlayerModel/Armature/Skeleton/Girl")
+	var overcoat = player.get_node("PlayerSpatial/PlayerModel/Armature/Skeleton/Overcoat")
+	var model_mat = SpatialMaterial.new()
+	var overcoat_mat = SpatialMaterial.new()
+	model_mat.albedo_color = Color("#4F2A20")
+	overcoat_mat.albedo_color = Color("#BD3D64")
+	model.set_surface_material(7, model_mat)
+	overcoat.set_surface_material(0, overcoat_mat)
 	pass
