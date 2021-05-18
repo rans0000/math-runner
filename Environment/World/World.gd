@@ -8,6 +8,7 @@ var winning_player = ""
 var finish_line_created = false
 
 onready var pause_menu = $PauseMenu
+onready var victory_menu = $VictoryMenu
 onready var Global = get_node("/root/Global")
 onready var desert_scene = preload("res://Environment/Desert/Desert.tscn")
 onready var player_scene = preload("res://Player/Player.tscn")
@@ -27,6 +28,7 @@ func _ready():
 
 func reset_game():
 	pause_menu.visible = false
+	victory_menu.visible = false
 	get_tree().paused = false
 	winning_player = ""
 	finish_line_created = false
@@ -98,5 +100,7 @@ func build_finish_line(finish_pos):
 
 
 func on_player_wins(player_id):
-	#show victory dialog
-	pass
+	if winning_player:
+		pass
+	winning_player = String(player_id + 1)
+	victory_menu.open_victory_dialog(player_id)
