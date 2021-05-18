@@ -60,6 +60,7 @@ move_right_1={
 3d_physics/layer_2="Environment"
 3d_physics/layer_3="Player"
 3d_physics/layer_4="Coin"
+3d_physics/layer_5="FinishLine"
 
 [rendering]
 

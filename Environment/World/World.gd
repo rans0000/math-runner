@@ -4,17 +4,20 @@ var pos = 0
 var lowest_player_distance = 0
 const BLOCK_WIDTH = 50
 var players = []
+var winning_player = ""
+var finish_line_created = false
 
 onready var pause_menu = $PauseMenu
 onready var Global = get_node("/root/Global")
 onready var desert_scene = preload("res://Environment/Desert/Desert.tscn")
 onready var player_scene = preload("res://Player/Player.tscn")
+onready var finish_line_scene = preload("res://Environment/FinishLine/FinishLine.tscn")
 onready var h_box = $HBoxContainer
 
 
 
 func _ready():
-	pause_menu.visible = false
+	reset_game()
 	create_players()
 	
 	for _i in range(4):
@@ -22,9 +25,12 @@ func _ready():
 
 
 
-func _input(event):
-	if event.is_action_released("ui_cancel"):
-		pause_menu.visible = !pause_menu.visible
+func reset_game():
+	pause_menu.visible = false
+	get_tree().paused = false
+	winning_player = ""
+	finish_line_created = false
+	Global.distance = 0.1
 	pass
 
 
@@ -62,6 +68,8 @@ func generate_world():
 	var platform = desert_scene.instance()
 	platform.transform.origin = Vector3(0, 0, -pos)
 	call_deferred("add_child", platform)
+	if !finish_line_created and Global.distance != INF and pos >= (Global.distance * 1000):
+		build_finish_line(-pos)
 	pos += BLOCK_WIDTH
 	pass
 
@@ -75,4 +83,20 @@ func delete_floor(pos_z, platform):
 	if(pos_z <= min_pos):
 		platform.queue_free()
 		lowest_player_distance = pos_z
+	pass
+
+
+
+func build_finish_line(finish_pos):
+	var finish_line = finish_line_scene.instance()
+	finish_line.transform.origin = Vector3(0, 1, finish_pos)
+	finish_line.connect("player_wins", self, "on_player_wins")
+	finish_line_created = true
+	call_deferred("add_child", finish_line)
+	pass
+
+
+
+func on_player_wins(player_id):
+	#show victory dialog
 	pass
