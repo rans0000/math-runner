@@ -27,7 +27,7 @@ func _ready():
 
 
 func reset_game():
-	#Global.distance = 0.1
+#	Global.distance = 0.1
 	get_tree().paused = false
 	finish_line_created = false
 	pause_menu.visible = false

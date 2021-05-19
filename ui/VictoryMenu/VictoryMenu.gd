@@ -8,13 +8,13 @@ onready var victory_mssg = get_node(victory_mssg_node)
 func open_victory_dialog(player_id):
 	victory_mssg.text = "Player " + String(player_id + 1) + " wins"
 	var t = Timer.new()
-	t.wait_time = 0.5
+	visible = !visible
+	t.wait_time = 2
 	t.one_shot = true
 	add_child(t)
 	t.start()
 	yield(t, "timeout")
 	t.queue_free()
-	visible = !visible
 	get_tree().paused = visible
 	pass
 

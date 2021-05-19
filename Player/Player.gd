@@ -143,3 +143,8 @@ func sprint():
 func _on_SpeedTimer_timeout():
 	forward_speed = FORWARD_SPEED_REGULAR
 	pass
+
+
+func on_vicory():
+	animation_tree.set(anim_victory, true)
+	pass
