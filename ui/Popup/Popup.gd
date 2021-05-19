@@ -77,3 +77,27 @@ func validate_distance(text):
 
 func _on_popup_toggle():
 	toggle_error_mssg(prev_distance)
+
+
+
+func _on_BtnMinus_pressed():
+	var dist = int(prev_distance)
+	match dist:
+		String(INF), 1:
+			prev_distance = "1"
+		_:
+			prev_distance = String(dist - 1)
+	input_distance.set_text(prev_distance)
+	pass
+
+
+
+func _on_BtnPlus_pressed():
+	var dist = int(prev_distance)
+	match dist:
+		String(INF), 5:
+			prev_distance = "5"
+		_:
+			prev_distance = String(dist + 1)
+	input_distance.set_text(prev_distance)
+	pass

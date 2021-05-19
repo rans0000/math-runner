@@ -247,6 +247,8 @@ mouse_default_cursor_shape = 2
 text = "PLAY"
 [connection signal="about_to_show" from="Popup" to="." method="_on_popup_toggle"]
 [connection signal="popup_hide" from="Popup" to="." method="_on_popup_toggle"]
+[connection signal="pressed" from="Popup/MarginContainer/Panel/MarginContainer/VBoxContainer/OptionsWrapper/DistWrapper/HBoxContainer/BtnMinus" to="." method="_on_BtnMinus_pressed"]
 [connection signal="text_changed" from="Popup/MarginContainer/Panel/MarginContainer/VBoxContainer/OptionsWrapper/DistWrapper/HBoxContainer/InputDistance" to="." method="_on_InputDistance_text_changed"]
+[connection signal="pressed" from="Popup/MarginContainer/Panel/MarginContainer/VBoxContainer/OptionsWrapper/DistWrapper/HBoxContainer/BtnPlus" to="." method="_on_BtnPlus_pressed"]
 [connection signal="button_up" from="Popup/MarginContainer/Panel/MarginContainer/VBoxContainer/ActionWrapper/BtnClose" to="." method="_on_BtnClose_button_up"]
 [connection signal="pressed" from="Popup/MarginContainer/Panel/MarginContainer/VBoxContainer/ActionWrapper/BtnPlay" to="." method="_on_BtnPlay_button_up"]
