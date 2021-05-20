@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ui/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://ui/Popup/Popup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/Themes/MainTheme/main_theme.tres" type="Theme" id=3]
+[ext_resource path="res://ui/anim_victory/GameOptions.tscn" type="PackedScene" id=4]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -87,6 +88,8 @@ mouse_default_cursor_shape = 2
 text = "EXIT"
 
 [node name="Popup" parent="." instance=ExtResource( 2 )]
+
+[node name="GameOptions" parent="." instance=ExtResource( 4 )]
 [connection signal="button_up" from="Panel/CenterContainer/VBoxContainer/BtnPlay1" to="." method="_on_BtnPlay_button_up"]
 [connection signal="button_up" from="Panel/CenterContainer/VBoxContainer/BtnPlay2" to="." method="_on_BtnPlay2_button_up"]
-[connection signal="button_up" from="Panel/CenterContainer/VBoxContainer/BtnOptions" to="." method="_on_BtnPlay2_button_up"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/BtnOptions" to="." method="_on_BtnOptions_pressed"]
