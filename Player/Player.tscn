@@ -78,7 +78,7 @@ nodes/anim_victory/position = Vector2( 400, 300 )
 nodes/anim_victory_oneshot/node = SubResource( 12 )
 nodes/anim_victory_oneshot/position = Vector2( 680, 120 )
 nodes/output/position = Vector2( 980, 120 )
-node_connections = [ "output", 0, "anim_victory_oneshot", "anim_head_hit_oneshot", 0, "anim_strafe_oneshot", "anim_head_hit_oneshot", 1, "anim_coin_hit", "anim_victory_oneshot", 0, "anim_head_hit_oneshot", "anim_victory_oneshot", 1, "anim_victory", "anim_strafe_oneshot", 0, "anim_stance", "anim_strafe_oneshot", 1, "anim_strafe" ]
+node_connections = [ "output", 0, "anim_victory_oneshot", "anim_victory_oneshot", 0, "anim_head_hit_oneshot", "anim_victory_oneshot", 1, "anim_victory", "anim_head_hit_oneshot", 0, "anim_strafe_oneshot", "anim_head_hit_oneshot", 1, "anim_coin_hit", "anim_strafe_oneshot", 0, "anim_stance", "anim_strafe_oneshot", 1, "anim_strafe" ]
 
 [sub_resource type="CapsuleShape" id=14]
 radius = 0.3
