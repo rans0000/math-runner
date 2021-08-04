@@ -34,6 +34,7 @@ onready var animation_tree = $AnimationTree
 onready var left_feeler = $LeftFeeler
 onready var right_feeler = $RightFeeler
 onready var speed_timer = $SpeedTimer
+onready var score_feedback = $ScoreHitFeedback
 #onready var tt = $PlayerSpatial/PlayerModel/Armature/Skeleton/Overcoat
 
 
@@ -138,11 +139,12 @@ func slow_down():
 
 
 
-func sprint():
+func sprint(coin):
 	forward_speed = FORWARD_SPEED_BONUS
 	score += SCORE_INCREMENT
 	#score_card.set_score(score)
 	score_card.set_boost(Global.STATUS.SPRINT)
+	score_feedback.set_coin_hit(coin)
 	speed_timer.start()
 	pass
 

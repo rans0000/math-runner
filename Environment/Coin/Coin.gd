@@ -20,7 +20,7 @@ func set_number(_num):
 func _on_Area_body_entered(body):
 	if body.is_in_group("player"):
 		if Global.is_sprint(number):
-			body.sprint()
+			body.sprint(number)
 		else:
 			body.slow_down()
 		call_deferred("free")

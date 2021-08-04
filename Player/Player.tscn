@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://ui/ScoreCard/ScoreCard.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Player/Animation/Player-walk-loop.tres" type="Animation" id=8]
 [ext_resource path="res://Player/Animation/Player-strafe-right.tres" type="Animation" id=9]
 [ext_resource path="res://Player/Animation/Player-stafe-left.tres" type="Animation" id=10]
+[ext_resource path="res://ui/ScoreHitFeedback/ScoreHitFeedback.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Player-coin-hit"
@@ -169,4 +170,6 @@ collision_mask = 4
 [node name="SpeedTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="ScoreHitFeedback" parent="." instance=ExtResource( 11 )]
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_SpeedTimer_timeout"]
