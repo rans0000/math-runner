@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://ui/Popup/Popup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/Themes/MainTheme/main_theme.tres" type="Theme" id=3]
 [ext_resource path="res://ui/anim_victory/GameOptions.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/Themes/MainTheme/secondary_theme.tres" type="Theme" id=5]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -16,7 +17,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -25,12 +26,28 @@ margin_left = -150.0
 margin_top = -160.0
 margin_right = 150.0
 margin_bottom = 160.0
+custom_constants/separation = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 36.0
+theme = ExtResource( 5 )
+text = "MATH  RUNNER"
+align = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 300.0
+margin_bottom = 368.0
 rect_min_size = Vector2( 300, 320 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -46,7 +63,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/CenterContainer"]
 margin_left = 20.0
 margin_top = 25.0
 margin_right = 270.0
@@ -56,14 +73,14 @@ grow_vertical = 2
 custom_constants/separation = 10
 alignment = 1
 
-[node name="BtnPlay1" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+[node name="BtnPlay1" type="Button" parent="VBoxContainer/Panel/CenterContainer/VBoxContainer"]
 margin_right = 250.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 250, 60 )
 mouse_default_cursor_shape = 2
 text = "1 PLAYER"
 
-[node name="BtnPlay2" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+[node name="BtnPlay2" type="Button" parent="VBoxContainer/Panel/CenterContainer/VBoxContainer"]
 margin_top = 70.0
 margin_right = 250.0
 margin_bottom = 130.0
@@ -71,7 +88,7 @@ rect_min_size = Vector2( 250, 60 )
 mouse_default_cursor_shape = 2
 text = "2 PLAYER"
 
-[node name="BtnOptions" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+[node name="BtnOptions" type="Button" parent="VBoxContainer/Panel/CenterContainer/VBoxContainer"]
 margin_top = 140.0
 margin_right = 250.0
 margin_bottom = 200.0
@@ -79,7 +96,7 @@ rect_min_size = Vector2( 250, 60 )
 mouse_default_cursor_shape = 2
 text = "OPTIONS"
 
-[node name="BtnExit" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+[node name="BtnExit" type="Button" parent="VBoxContainer/Panel/CenterContainer/VBoxContainer"]
 margin_top = 210.0
 margin_right = 250.0
 margin_bottom = 270.0
@@ -90,6 +107,6 @@ text = "EXIT"
 [node name="Popup" parent="." instance=ExtResource( 2 )]
 
 [node name="GameOptions" parent="." instance=ExtResource( 4 )]
-[connection signal="button_up" from="Panel/CenterContainer/VBoxContainer/BtnPlay1" to="." method="_on_BtnPlay_button_up"]
-[connection signal="button_up" from="Panel/CenterContainer/VBoxContainer/BtnPlay2" to="." method="_on_BtnPlay2_button_up"]
-[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/BtnOptions" to="." method="_on_BtnOptions_pressed"]
+[connection signal="button_up" from="VBoxContainer/Panel/CenterContainer/VBoxContainer/BtnPlay1" to="." method="_on_BtnPlay_button_up"]
+[connection signal="button_up" from="VBoxContainer/Panel/CenterContainer/VBoxContainer/BtnPlay2" to="." method="_on_BtnPlay2_button_up"]
+[connection signal="pressed" from="VBoxContainer/Panel/CenterContainer/VBoxContainer/BtnOptions" to="." method="_on_BtnOptions_pressed"]
