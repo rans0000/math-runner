@@ -40,6 +40,8 @@ onready var speed_timer = $SpeedTimer
 
 func _ready():
 	set_initial_position(side)
+	#seting multiplier to score for now
+	score_card.set_score(Global.number)
 	pass
 
 
@@ -130,6 +132,7 @@ func set_strafe_animation(strafe_mode):
 func slow_down():
 	animation_tree.set(anim_head_hit, true)
 	forward_speed = FORWARD_SPEED_PENALTY
+	score_card.set_boost(Global.STATUS.PENALTY)
 	speed_timer.start()
 	pass
 
@@ -138,7 +141,8 @@ func slow_down():
 func sprint():
 	forward_speed = FORWARD_SPEED_BONUS
 	score += SCORE_INCREMENT
-	score_card.set_score(score)
+	#score_card.set_score(score)
+	score_card.set_boost(Global.STATUS.SPRINT)
 	speed_timer.start()
 	pass
 
@@ -146,6 +150,7 @@ func sprint():
 
 func _on_SpeedTimer_timeout():
 	forward_speed = FORWARD_SPEED_REGULAR
+	score_card.set_boost(Global.STATUS.NORMAL)
 	pass
 
 

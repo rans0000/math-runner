@@ -2,6 +2,9 @@ extends Control
 const ONE_KM = 1000
 onready var distance_label = $ScoreBox/HBoxContainer/DistanceLabel
 onready var score_label = $ScoreBox/HBoxContainer/ScoreLabel
+onready var boost_rect = $ScoreBox/HBoxContainer/CenterContainer/BoostRect
+onready var boost_icon = preload("res://ui/Themes/MainTheme/Textures/status_sprint_icon.png")
+onready var penalty_icon = preload("res://ui/Themes/MainTheme/Textures/status_ghost_icon.png")
 
 
 func set_distance(distance):
@@ -15,3 +18,12 @@ func set_distance(distance):
 
 func set_score(score):
 	score_label.text = "%d" % score
+
+func set_boost(boost):
+	if(boost == Global.STATUS.SPRINT):
+		boost_rect.set("texture", boost_icon)
+	elif (boost == Global.STATUS.PENALTY):
+		boost_rect.set("texture", penalty_icon)
+	else:
+		boost_rect.texture = null
+	pass

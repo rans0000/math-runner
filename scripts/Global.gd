@@ -3,6 +3,7 @@ extends Node
 var current_scene = null
 enum PLAY_TYPES {LOC_SINGLE = 1, LOC_2_PLAYER = 2}
 enum SIDE {LEFT = -1, CENTER = 0, RIGHT = 1}
+enum STATUS {NORMAL, SPRINT, PENALTY}
 var play_type = PLAY_TYPES.LOC_SINGLE
 onready var number = 5
 onready var distance = 2

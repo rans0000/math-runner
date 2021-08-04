@@ -33,21 +33,21 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="ScoreBox"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -123.0
+margin_left = -115.0
 margin_right = 115.0
-margin_bottom = 77.0
+margin_bottom = 50.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_constants/separation = 24
+custom_constants/separation = 0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScoreLabel" type="Label" parent="ScoreBox/HBoxContainer"]
-margin_top = 24.0
+margin_top = 26.0
 margin_right = 70.0
-margin_bottom = 52.0
+margin_bottom = 54.0
 rect_min_size = Vector2( 70, 0 )
 theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 1 )
@@ -57,17 +57,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BoostRect" type="TextureRect" parent="ScoreBox/HBoxContainer"]
-margin_left = 94.0
-margin_right = 144.0
-margin_bottom = 77.0
+[node name="CenterContainer" type="CenterContainer" parent="ScoreBox/HBoxContainer"]
+margin_left = 70.0
+margin_right = 160.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 90, 80 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoostRect" type="TextureRect" parent="ScoreBox/HBoxContainer/CenterContainer"]
+margin_left = 20.0
+margin_top = 14.0
+margin_right = 70.0
+margin_bottom = 64.0
 rect_min_size = Vector2( 50, 50 )
 
 [node name="DistanceLabel" type="Label" parent="ScoreBox/HBoxContainer"]
-margin_left = 168.0
-margin_top = 24.0
-margin_right = 238.0
-margin_bottom = 52.0
+margin_left = 160.0
+margin_top = 26.0
+margin_right = 230.0
+margin_bottom = 54.0
 rect_min_size = Vector2( 70, 0 )
 theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 1 )
