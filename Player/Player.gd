@@ -19,6 +19,8 @@ const STANCE_IDLE = 0
 const STANCE_WALK = 0.5
 const STANCE_RUN = 1
 const STRAFE_SPEED = 1000
+const SCORE_INCREMENT = 10
+var score = 0
 var anim_stance = "parameters/anim_stance/blend_position"
 var anim_strafe_mode = "parameters/anim_strafe/blend_position"
 var anim_strafe = "parameters/anim_strafe_oneshot/active"
@@ -135,6 +137,8 @@ func slow_down():
 
 func sprint():
 	forward_speed = FORWARD_SPEED_BONUS
+	score += SCORE_INCREMENT
+	score_card.set_score(score)
 	speed_timer.start()
 	pass
 

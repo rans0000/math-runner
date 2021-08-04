@@ -6,6 +6,7 @@ const BLOCK_WIDTH = 50
 var players = []
 var winning_player = ""
 var finish_line_created = false
+const PLAYER_2 = 1
 
 onready var pause_menu = $PauseMenu
 onready var victory_menu = $VictoryMenu
@@ -60,7 +61,7 @@ func create_players():
 		viewport.handle_input_locally = true
 		viewport.render_target_update_mode = 0
 		viewport.gui_disable_input = true
-		if i == 1:
+		if i == PLAYER_2:
 			set_player_material(player)
 		h_box.add_child(vw_container)
 		h_box.move_child(vw_container, 0)
